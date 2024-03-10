@@ -20,6 +20,11 @@ public class EmpController {
 	@Autowired
 	EmpRepository empRepo;
 
+	@GetMapping(value = {"/", "/welcome"})
+	public String welcome() {
+		return "this is welcome message from spring boot app with mysql";
+	}
+	
 	@GetMapping("/employee")
 	public List<Employee> getAllEmp() {
 		log.info("getting list of employees");
@@ -29,6 +34,6 @@ public class EmpController {
 	@PostMapping(value = "/employee", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String addEmp(@RequestBody Employee emp) {
 		log.info("adding employees");
-		return "successfully added emp with id: " + empRepo.save(emp).getId();
+		return "successfully added emp with id: " + empRepo.save(emp);
 	}
 }
